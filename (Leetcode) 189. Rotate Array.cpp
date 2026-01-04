@@ -5,9 +5,11 @@
 #include <algorithm>
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    void rotate(vector<int>& nums, int k) {
+    void rotate(vector<int> &nums, int k)
+    {
         int n = nums.size();
         k = k % n;
         reverse(nums.begin(), nums.end());
@@ -16,7 +18,8 @@ public:
     }
 };
 
-int main() {
+int main()
+{
     Solution sol;
 
     vector<int> nums = {1, 2, 3, 4, 5, 6, 7};
@@ -24,7 +27,8 @@ int main() {
 
     sol.rotate(nums, k);
 
-    for (int x : nums) {
+    for (int x : nums)
+    {
         cout << x << " ";
     }
 
