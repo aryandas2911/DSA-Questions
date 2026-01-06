@@ -3,15 +3,19 @@
 #include <iostream>
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    int countDigits(int num) {
-        int count=0;
+    int countDigits(int num)
+    {
+        int count = 0;
         int k = num;
-        while (k > 0) {
+        while (k > 0)
+        {
             int l = k % 10;
             k = k / 10;
-            if (num % l == 0) {
+            if (num % l == 0)
+            {
                 count++;
             }
         }
