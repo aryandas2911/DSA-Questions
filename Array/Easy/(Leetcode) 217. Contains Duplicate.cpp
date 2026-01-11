@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <vector>
-#include <algorithm> // for sort
+#include <algorithm>
 
 using namespace std;
 
