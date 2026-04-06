@@ -10,46 +10,48 @@ class Solution
 public:
     vector<vector<int>> generate(int numRows)
     {
-        vector<vector<int>> rows;
-        for (int i = 0; i < numRows; i++)
+        vector<vector<int>> ans;
+
+        for (int i = 1; i <= numRows; i++)
         {
-            vector<int> row;
-            if (i <= 1)
+            vector<int> currentRow;
+            long long val = 1;
+
+            currentRow.push_back(1);
+
+            for (int col = 1; col < i; col++)
             {
-                for (int j = 0; j <= i; j++)
-                {
-                    row.push_back(1);
-                }
+                val = val * (i - col) / col;
+                currentRow.push_back(val);
             }
-            else
-            {
-                row.push_back(1);
-                for (int j = 1; j < i; j++)
-                {
-                    row.push_back(rows[i - 1][j - 1] + rows[i - 1][j]);
-                }
-                row.push_back(1);
-            }
-            rows.push_back(row);
+
+            ans.push_back(currentRow);
         }
-        return rows;
+
+        return ans;
     }
 };
 
 int main()
 {
+    int numRows;
+
+    cout << "Enter number of rows: ";
+    cin >> numRows;
+
     Solution sol;
-    int numRows = 5;
     vector<vector<int>> result = sol.generate(numRows);
-    for (int i = 0; i < result.size(); i++)
+
+    cout << "\nPascal Triangle:\n";
+
+    for (const auto &row : result)
     {
-        for (int s = 0; s < numRows - i; s++)
-            cout << " ";
-        for (int j = 0; j < result[i].size(); j++)
+        for (int num : row)
         {
-            cout << result[i][j] << " ";
+            cout << num << " ";
         }
         cout << endl;
     }
+
     return 0;
 }
