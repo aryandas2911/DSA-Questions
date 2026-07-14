@@ -1,38 +1,42 @@
 // Ques Link: https://leetcode.com/problems/longest-common-prefix/description/
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
 using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-    string longestCommonPrefix(vector<string> &strs)
-    {
-        size_t m = strs[0].size();
-        for (auto &i : strs)
-        {
-            m = min(i.size(), m);
+    string longestCommonPrefix(vector<string>& strs) {
+        string result = "";
+        sort(strs.begin(), strs.end());
+
+        string first = strs[0];
+        string last = strs[strs.size() - 1];
+
+        int first_size = first.length();
+        int last_size = last.length();
+
+        for (int i = 0; i < min(first_size, last_size); i++) {
+            if (first[i] == last[i]) {
+                result += first[i];
+            } else {
+                break;
+            }
         }
 
-        string pre = "";
-        for (size_t i = 0; i < m; i++)
-        {
-            char a = strs[0][i];
-            for (auto &j : strs)
-            {
-                if (j[i] != a)
-                    return pre;
-            }
-            pre += a;
-        }
-        return pre;
+        return result;
     }
 };
 
-int main()
-{
+int main() {
+    Solution sol;
+
     vector<string> strs = {"flower", "flow", "flight"};
-    Solution obj;
-    cout << obj.longestCommonPrefix(strs);
+
+    cout << "Longest Common Prefix: "
+         << sol.longestCommonPrefix(strs) << endl;
+
     return 0;
 }
