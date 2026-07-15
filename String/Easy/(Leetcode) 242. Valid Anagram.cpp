@@ -9,35 +9,52 @@ class Solution
 public:
     bool isAnagram(string s, string t)
     {
-        int m1[256] = {0};
-        int m2[256] = {0};
+        int s_size = s.length();
+        int t_size = t.length();
 
-        if (s.size() != t.size())
-            return false;
-
-        for (int i = 0; i < s.size(); i++)
+        if (s_size != t_size)
         {
-            m1[s[i]]++;
-            m2[t[i]]++;
+            return false;
         }
 
-        for (char c : s)
+        int freq[26] = {0};
+
+        for (char i : s)
         {
-            if (m1[c] != m2[c])
+            freq[i - 'a']++;
+        }
+
+        for (char i : t)
+        {
+            freq[i - 'a']--;
+        }
+
+        for (int i = 0; i < 26; i++)
+        {
+            if (freq[i] != 0)
                 return false;
         }
+
         return true;
     }
 };
 
 int main()
 {
-    Solution sol;
+    Solution obj;
 
-    string s = "anagram";
-    string t = "nagaram";
+    string s, t;
 
-    cout << (sol.isAnagram(s, t) ? "True" : "False") << endl;
+    cout << "Enter first string: ";
+    cin >> s;
+
+    cout << "Enter second string: ";
+    cin >> t;
+
+    if (obj.isAnagram(s, t))
+        cout << "The strings are anagrams." << endl;
+    else
+        cout << "The strings are not anagrams." << endl;
 
     return 0;
 }
